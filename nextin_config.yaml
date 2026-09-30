@@ -1,15 +1,29 @@
-# Cấu hình ghi đè Locket Gold cho Nextin / Clash Meta
+mixed-port: 7890
+mode: rule
+log-level: warning
+ipv6: false
+
+dns:
+  enable: true
+  ipv6: false
+  use-hosts: true                # bắt buộc để hosts có tác dụng
+  enhanced-mode: redir-host
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 223.5.5.5                   # AliDNS – chạy được ở TQ
+    - 119.29.29.29                # DNSPod – chạy được ở TQ
+
 hosts:
   'api.revenuecat.com': 160.191.243.72
-  '*.revenuecat.com': 160.191.243.72
   '+.revenuecat.com': 160.191.243.72
   'firebaseremoteconfig.googleapis.com': 160.191.243.72
   'firebaseremoteconfigrealtime.googleapis.com': 160.191.243.72
   'firebaselogging.googleapis.com': 160.191.243.72
 
+proxies: []
+proxy-groups: []
+
 rules:
-  - DOMAIN-SUFFIX,revenuecat.com,DIRECT
-  - DOMAIN,firebaseremoteconfig.googleapis.com,DIRECT
-  - DOMAIN,firebaseremoteconfigrealtime.googleapis.com,DIRECT
-  - DOMAIN,firebaselogging.googleapis.com,DIRECT
-  - IP-CIDR,160.191.243.72/32,DIRECT
+  - MATCH,DIRECT                  # dòng này chống mất mạng
